@@ -1,0 +1,28 @@
+{% extends "layout/data_table.html" %}
+
+{% block title %}
+    <h5 class="card-header">Сотрудники</h5>
+{% endblock %}
+
+{% block table %}
+<table class="table table-fluid table-sm" id="myTable">
+    <thead>
+        <tr>
+            <th>Логин</th>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td><a href="{% url 'customer' user.id %}">{{user.user}}</a></td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.first_name}}</td>
+            <td>{{user.user.email}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

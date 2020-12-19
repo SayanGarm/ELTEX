@@ -1,0 +1,13 @@
+
+<div class="card">
+    <h5 class="card-header">
+        {% block title%} Мои данные {% endblock %}
+    </h5>
+    <div class="card-body">
+        <p>Логин: {{profile.user}}</p>
+        <p>Имя: {{profile.first_name}}</p>
+        <p>Отчество: {{profile.middle_name}}</p>
+        <p>Фамилия: {{profile.last_name}}</p>
+        <p>Email-адрес: {{profile.user.email}}</p>
+    </div>
+</div>

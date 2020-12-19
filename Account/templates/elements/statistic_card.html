@@ -1,0 +1,57 @@
+
+<div class="card">
+    <h5 class="card-header">
+        Статистика
+    </h5>
+
+    <div class="card-body">
+        <div class="row justify-content-around">
+
+        <div class="col-md-4">
+            <div class="card card-body text-white bg-success">
+                <h5>Проверенные статьи <br></h5>
+                <hr>
+                <h1 style="text-align: center;padding: 10px">
+                    {% if is_moder %}
+                    <a class="text-white" href="/article/all/?status=A">{{articles_count.A}}</a>
+                    {% else %}
+                    <a class="text-white" href="/article/all/?author={{ profile.user }}&status=A">{{articles_count.A}}</a>
+                    {% endif %}
+                </h1>
+            </div>
+        </div>
+    
+        <div class="col-md-4">
+            <div class="card card-body text-white bg-danger">
+                <h5>Требуют исправления</h5>
+                <hr>
+                <h1 style="text-align: center;padding: 10px">
+                    {% if is_moder %}
+                    <a class="text-white" href="/article/all/?status=B">{{articles_count.B}}</a>
+                    {% else %}
+                    <a class="text-white" href="/article/all/?author={{profile.user}}&status=B">{{articles_count.B}}</a>
+                    {% endif %}
+                </h1>
+            </div>
+        </div>
+    
+        <div class="col-md-4">
+            <div class="card card-body text-white bg-warning">
+                <h5>Ожидают проверки</h5>
+                <hr>
+                <h1 style="text-align: center;padding: 10px">
+                    {% if is_moder %}
+                    <a class="text-white" href="/article/all/?status=C">{{articles_count.C}}</a>
+                    {% else %}
+                    <a class="text-white" href="/article/all/?author={{profile.user}}&status=C">{{articles_count.C}}</a>
+                    {% endif %}
+
+                </h1>
+            </div>
+        </div>
+
+        </div>
+    </div>
+</div>
+
+
