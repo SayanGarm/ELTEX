@@ -20,6 +20,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'LaboratoryWork.apps.LaboratoryworkConfig',
     'Account.apps.AccountConfig',
     'django.contrib.admin',
     'django.contrib.auth',

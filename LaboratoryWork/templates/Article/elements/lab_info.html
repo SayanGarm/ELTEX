@@ -1,0 +1,42 @@
+{% extends 'Article/layout/card.html' %}
+
+{% block title %}
+<div class="d-flex flex-row justify-content-between align-items-center">
+    <h5>Лабораторные работы</h5>
+    {% if is_teacher %}
+        <a class="btn btn-outline-secondary" href="/admin/LaboratoryWork/laboratorywork/" role="button">Модерация</a>
+    {% endif %}
+    <div class="col-md-auto"">
+        <a class="btn btn-danger" href="{% url 'start-page-switch' %}" role="button">Назад</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="accordion" id="accordionExample">
+    {% for work in lab_works %}
+    <div class="card">
+      <button class="btn p-0" type="button" data-toggle="collapse" data-target="#Collapse{{work.id}}" aria-expanded="true" aria-controls="collapseOne">
+
+      <div class="card-header" id="headingOne">
+          <div class="d-flex flex-row justify-content-between align-items-center ">
+            {{work.title}}
+          </div>
+      </div>
+      </button>
+
+      <div id="Collapse{{work.id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+            <p>
+                <h5>Описание</h5>
+                <hr>
+                {{ work.content }}
+                <hr>
+                <p>Документ: <a href="{{work.document.url}}">Ссылка</a></p>
+            </p> 
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

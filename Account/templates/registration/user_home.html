@@ -15,9 +15,9 @@
 				</h5>
 				<div class="card-body">
 					<div class="d-flex flex-column">
-						<a class="btn btn-outline-secondary btn-block" href="" role="button">Лабораторные работы</a>
+						<a class="btn btn-outline-secondary btn-block" href="{% url 'lab_work' %}" role="button">Лабораторные работы</a>
 						<a class="btn btn-outline-secondary btn-block" href="https://www.tinkercad.com/things/7h98qGxj3QI-glorious-krunk/editel?tenant=circuits" role="button">Эмулятор Arduino</a>
-
+						<a class="btn btn-outline-secondary btn-block" href="{% url 'archive' %}" role="button">Мои отчеты</a>
 					</div>
 				</div>
 			</div>
@@ -29,11 +29,10 @@
 				{% include 'elements/user_info_card.html' %}
 				<br>
 				{% include 'elements/statistic_card.html' %}
-				<br>
 			</div>
 		</div>
 	</div>
-	<
+	
 </div>
 
 

@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.http import HttpResponse
 
+from LaboratoryWork.models import Article
+from LaboratoryWork.forms import ArticleListForm
 from .models import Profile
 # from .decorators import allowed_roles
 
@@ -25,7 +27,17 @@ class StudentPage(View):
     def get(self, request, *args, **kwargs):
         profile = Profile.objects.get(user=request.user)
 
-        context = { 'profile': profile }
+        articles = Article.objects.filter(author=request.user)
+        articles_count = {
+            'A': articles.filter(status='A').count(),
+            'B': articles.filter(status='B').count(),
+            'C': articles.filter(status='C').count()
+        }
+        
+        context = { 'profile': profile,
+                    'articles': articles,
+                    'articles_count': articles_count,
+                }
 
         return render(request, 'registration/user_home.html', context)
 
@@ -33,8 +45,17 @@ class TeacherPage(View):
     def get(self, request, *args, **kwargs):
         profile = Profile.objects.get(user=request.user)
 
+      
+        articles = Article.objects.all()
+        articles_count = {
+            'A': articles.filter(status='A').count(),
+            'B': articles.filter(status='B').count(),
+            'C': articles.filter(status='C').count()
+        }
+        
         context = { 'profile': profile,
-                    'is_teacher': True
+                    'articles_count': articles_count,
+                    'is_moder': True
                   }
 
         return render(request, 'registration/moderator_home.html', context)

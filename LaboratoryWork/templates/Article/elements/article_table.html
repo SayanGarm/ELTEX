@@ -1,0 +1,33 @@
+{% extends 'Article/layout/articles_table.html' %}
+
+{% block title %}
+    <h5 class="card-header">Все отчеты</h5>
+{% endblock %}
+
+{% block table %}
+<table class="table table-fluid table-sm" id="myTable">
+    <thead>
+        <tr>
+        <th>Название</th>
+        <th>Дата публикации</th>
+        <th>Автор</th>
+        <th>Документ</th>
+        <th>Статус</th>
+        </tr>
+    </thead>
+   <tbody>
+    {% for article in articles %}
+        <tr>
+            <td><a href="{% url 'article_info' article.id %}">{{article.title}}</a></td>
+            <td>{{article.published}}</td>
+            <td>{{article.author}}</td>
+            <td><a href="{{article.document.url}}">Ссылка</a></td>
+            <td>{{article.status}}</td>
+        </tr>
+    {% endfor %}
+   </tbody>
+    
+</table>
+
+
+{% endblock %}
