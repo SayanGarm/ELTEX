@@ -3,11 +3,13 @@
 {% block title %}
 <div class="d-flex flex-row justify-content-between align-items-center">
     <h5>Лабораторные работы</h5>
-    {% if is_teacher %}
+    <div class="d-flex flex-row justify-content-between align-items-center">
+        {% if is_teacher %}
         <a class="btn btn-outline-secondary" href="/admin/LaboratoryWork/laboratorywork/" role="button">Модерация</a>
-    {% endif %}
-    <div class="col-md-auto"">
-        <a class="btn btn-danger" href="{% url 'start-page-switch' %}" role="button">Назад</a>
+        {% endif %}
+        <div class="col-md-auto"">
+            <a class="btn btn-danger" href="{% url 'start-page-switch' %}" role="button">Назад</a>
+        </div>  
     </div>
 </div>
 {% endblock %}
