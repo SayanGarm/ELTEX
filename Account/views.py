@@ -59,3 +59,32 @@ class TeacherPage(View):
                   }
 
         return render(request, 'registration/moderator_home.html', context)
+
+
+class UsersListPage(View):
+    def get(self, request, *args, **kwargs):
+        profiles = Profile.objects.get_student()
+
+        context = { 'users': profiles }
+
+        return render(request, 'registration/users_list.html', context)
+
+class UserProfilePage(View):
+    def get(self, request, pk):
+        profile = Profile.objects.get(id=pk)
+
+        search_form = ArticleListForm(request.GET)
+
+        articles = Article.objects.filter(author=profile.user)
+        articles_count = {
+            'A': articles.filter(status='A').count(),
+            'B': articles.filter(status='B').count(),
+            'C': articles.filter(status='C').count()
+        }
+        
+        context = { 'profile': profile,
+                    'articles': articles,
+                    'articles_count': articles_count,
+                    'search_form': search_form}
+
+        return render(request, 'registration/user_page.html', context)

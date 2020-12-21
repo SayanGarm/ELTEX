@@ -18,7 +18,6 @@ class LaboratoryWork(models.Model):
     def __str__(self):
         return self.title
 
-
     class Meta:
         verbose_name_plural = 'Лабораторные работы'
         verbose_name = 'Лабораторная работа'
@@ -33,7 +32,6 @@ class Article(models.Model):
     content = models.TextField(null=True, blank=True, verbose_name='Описание')
     published = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Дата публикации')
     author = models.ForeignKey(User, null=True, on_delete=models.PROTECT, verbose_name='Автор')
-    laboratory_work = models.ForeignKey(LaboratoryWork, null=False, on_delete=models.PROTECT, verbose_name='Лабораторная работа')
 
     document = models.FileField(verbose_name='Документ')
 
@@ -69,3 +67,15 @@ class Review(models.Model):
         verbose_name_plural = 'Ответы'
         verbose_name = 'Ответ'
         ordering = ['-published']
+
+class LaboratoryStand(models.Model):
+    title = models.CharField(max_length=50, verbose_name='Название')
+    content = models.TextField(null=True, blank=True, verbose_name='Описание')
+    key = models.CharField(max_length=50, verbose_name='Ключ')
+    
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = 'Лабораторные стенды'
+        verbose_name = 'Лабораторный стенд'
